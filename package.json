@@ -18,8 +18,6 @@
   "homepage": "https://github.com/manufacturedba/grift-word-cloud#readme",
   "dependencies": {
     "base64url": "^3.0.1",
-    "express": "^4.17.1",
-    "fillers": "^1.1.4",
     "flatten": "^1.0.3",
     "googleapis": "^39.2.0",
     "html-entities": "^2.0.1",

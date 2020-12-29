@@ -8,32 +8,61 @@
     <script src="./wordcount.js"></script>
 
     <style>
-      #space {
-        height: 1000px;
-        width: 1000px;
-      }
-
       #my_canvas {
-        height: 1000px;
-        width: 1000px;
+        height: 100vh;
+        width: 100vw;
       }
     </style>
   </head>
   <body>
-    <div id="space">
-      <div id="my_canvas"></div>
-    </div>
+    <div id="my_canvas"></div>
     <script>
 
-    const list = [];
-    for (const [key, value] of Object.entries(window.wordcount)) {
-      if (value > 50) {
-        list.push([key, Number(value / 100).toFixed(0)]);
-      }
-    }
+      const list = [];
+      const entries = Object.entries(window.wordcount);
+      const sampleSize = 100;
+      let startingPoint = Math.round(Math.random() * entries.length - 1);
 
-    console.log(list);
-    WordCloud(document.getElementById('my_canvas'), { list: list, color: 'black', weightFactor: 5 } );
+      if (startingPoint + sampleSize > entries.length) {
+        startingPoint = entries.length - sampleSize;
+      }
+
+      const samples = entries.slice(startingPoint, startingPoint + sampleSize);
+
+      function cloud() {
+        WordCloud(document.getElementById('my_canvas'), { 
+          list: samples, 
+          shape: 'square',
+          wait: 100,
+          shuffle: true,
+          gridSize: 50,
+          weightFactor: function(weight) {
+            let factor = (Math.log10(weight) || 1) * weight;
+            if (factor > 150) {
+              factor = 150;
+            }
+            return factor + 40;
+          },
+          color: function(word, weight) {
+            
+            const red = '#B42033';
+            const white = '#CECECE';
+            const black = '#000000';
+            const blue = '#3C3B6E';
+            const colors = [red, black, blue];
+            let color = colors[Math.round(Math.random() * 2)];
+
+            if (weight > 100 && Math.round(Math.random())) {
+              color = '#85bb65'; // dollar green
+            }
+
+            return color;
+          }
+        });
+      }
+
+      cloud();
+      setInterval(cloud, 10000);
     </script>
   </body>
 </html>
