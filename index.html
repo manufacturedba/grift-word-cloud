@@ -1,1 +1,39 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grift word cloud</title>
+    <script src="./node_modules/wordcloud/src/wordcloud2.js"></script>
+    <script src="./wordcount.js"></script>
 
+    <style>
+      #space {
+        height: 1000px;
+        width: 1000px;
+      }
+
+      #my_canvas {
+        height: 1000px;
+        width: 1000px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="space">
+      <div id="my_canvas"></div>
+    </div>
+    <script>
+
+    const list = [];
+    for (const [key, value] of Object.entries(window.wordcount)) {
+      if (value > 50) {
+        list.push([key, Number(value / 100).toFixed(0)]);
+      }
+    }
+
+    console.log(list);
+    WordCloud(document.getElementById('my_canvas'), { list: list, color: 'black', weightFactor: 5 } );
+    </script>
+  </body>
+</html>

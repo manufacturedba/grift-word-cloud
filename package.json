@@ -1,0 +1,29 @@
+{
+  "name": "grift-word-cloud",
+  "version": "1.0.0",
+  "description": "You'll never get my money",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/manufacturedba/grift-word-cloud.git"
+  },
+  "author": "Roberto Rodriguez <manufacturedba@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/manufacturedba/grift-word-cloud/issues"
+  },
+  "homepage": "https://github.com/manufacturedba/grift-word-cloud#readme",
+  "dependencies": {
+    "base64url": "^3.0.1",
+    "express": "^4.17.1",
+    "fillers": "^1.1.4",
+    "flatten": "^1.0.3",
+    "googleapis": "^39.2.0",
+    "html-entities": "^2.0.1",
+    "is-url": "^1.2.4",
+    "wordcloud": "^1.1.2"
+  }
+}
